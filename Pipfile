@@ -1,0 +1,13 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+"discord.py-stubs" = "*"
+
+[packages]
+"discord.py" = {git = "https://github.com/Rapptz/discord.py.git"}
+
+[requires]
+python_version = "3.9"
