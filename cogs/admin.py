@@ -21,7 +21,7 @@ class AdminCog(commands.Cog, name='admin'):
         """Outputs list of cogs and general info about them into the chat
         :param ctx:"""
         embed = discord.Embed(title='Cogs List', color=0x2F3136)
-        for cog in list(map(lambda x: self.bot.get_cog(x), self.bot.cogs))[:25]:
+        for cog in list(map(lambda x: self.bot.get_cog(x), self.bot.cogs))[:25]:  # due to discord limitation
             date = cog.LOAD_DATE
             data = date.date(), date.time(), datetime.now() - date
             embed.add_field(name=cog.__class__.__name__,
@@ -51,8 +51,10 @@ class AdminCog(commands.Cog, name='admin'):
     async def _cog_reload_all(self, ctx: commands.Context) -> None:
         """Reloads all existing cogs
         :param ctx: Context"""
+
         async def empty(_):
             pass
+
         ctx.send = empty
         # i think best solution for now, would rewrite if better one found
         for cog_name in self.bot.cogs.copy():
